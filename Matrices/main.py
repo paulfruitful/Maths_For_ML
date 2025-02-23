@@ -55,6 +55,16 @@ class Matrix:
         self.matrix=result
 
         return self
+    def scalar_multiply(self, scalar):
+        A=self.matrix
+        result=[]
+        for i in range(len(A)):
+            row = []
+            for j in range(len(A[i])):
+                row.append(A[i][j]* scalar)
+            result.append(row)
+        self.matrix=result
+        return self
 
 
 testA=Matrix([
@@ -70,7 +80,7 @@ testB=Matrix(
 )
 
 
-result=testA.subtract_matrix(testB)
+result=testB.scalar_multiply(2)
     
         
 print(result.matrix)
