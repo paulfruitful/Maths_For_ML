@@ -65,6 +65,21 @@ class Matrix:
             result.append(row)
         self.matrix=result
         return self
+    def matrix_multiply(self,matrix):
+        #verify the dimensions
+        A=self.matrix
+        B=matrix.matrix
+        if len(B[0]) != len(A):
+            raise ValueError('The dimensions are not matching')
+        result=[[0 for _ in range(len(B[0]))] for _ in range(len(A))]
+
+        for A_rows in range( len(A)):
+            for B_cols in range(len(B[0])):
+             for B_rows in range(len(B)):
+                result[A_rows][B_cols] += A[A_rows][B_rows] * B[B_rows][B_cols]
+        self.matrix=result
+        return result
+
 
 
 testA=Matrix([
@@ -80,10 +95,10 @@ testB=Matrix(
 )
 
 
-result=testB.scalar_multiply(2)
+result=testB.matrix_multiply(testA)
     
         
-print(result.matrix)
+print(result)
 
     
         
